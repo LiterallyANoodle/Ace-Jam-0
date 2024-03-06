@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://q1bd3425b4ki"]
+
+[sub_resource type="Environment" id="Environment_22plu"]
+
+[node name="Main" type="Node"]
+
+[node name="Game Manager" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_22plu")
