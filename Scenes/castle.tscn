@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7og6evqqag2o"]
+
+[ext_resource type="PackedScene" uid="uid://8gc3hu6rn0qa" path="res://Scenes/wall.tscn" id="1_ukpev"]
+
+[node name="Castle" type="Node3D"]
+
+[node name="NorthWall" parent="." instance=ExtResource("1_ukpev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.565, 0, 0.94)
+
+[node name="SouthWall" parent="." instance=ExtResource("1_ukpev")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.565, 0, -0.94)
+
+[node name="EastWall" parent="." instance=ExtResource("1_ukpev")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.94, 0, 5.565)
+
+[node name="WestWall" parent="." instance=ExtResource("1_ukpev")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.94, 0, -5.565)

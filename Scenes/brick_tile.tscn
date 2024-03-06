@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1gaotbi5xc2f"]
+
+[ext_resource type="PackedScene" uid="uid://cw4dpboc3yhka" path="res://Assets/RawModels/brick.blend" id="1_oks0r"]
+[ext_resource type="Material" uid="uid://cgfu2ou6qqh6r" path="res://Assets/Resources/MaterialsAndShaders/brick_model_material.tres" id="2_ylhv7"]
+
+[node name="BrickTile" type="Node3D"]
+
+[node name="brick" parent="." instance=ExtResource("1_oks0r")]
+
+[node name="Cube" parent="brick" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+surface_material_override/0 = ExtResource("2_ylhv7")
+
+[editable path="brick"]
