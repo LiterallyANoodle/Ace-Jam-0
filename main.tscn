@@ -1,16 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://q1bd3425b4ki"]
 
-[ext_resource type="PackedScene" uid="uid://b7og6evqqag2o" path="res://Scenes/castle.tscn" id="1_5fceg"]
+[ext_resource type="PackedScene" uid="uid://chllav8a5o7lv" path="res://Scenes/level.tscn" id="1_as7fe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2kelh"]
 sky_top_color = Color(0.317647, 0.717647, 0.298039, 1)
 sky_horizon_color = Color(0.0666667, 0.105882, 0.0823529, 1)
 sky_curve = 4.17864
 sky_energy_multiplier = 1.55
-ground_bottom_color = Color(0.494118, 0.223529, 0.192157, 1)
+ground_bottom_color = Color(0.409919, 0.17934, 0.152758, 1)
 ground_horizon_color = Color(0.0666667, 0.105882, 0.0823529, 1)
-ground_curve = 0.177531
+ground_curve = 0.149285
 ground_energy_multiplier = 0.7
+sun_angle_max = 40.08
+sun_curve = 0.0208043
 
 [sub_resource type="Sky" id="Sky_pj1mq"]
 sky_material = SubResource("ProceduralSkyMaterial_2kelh")
@@ -20,7 +22,7 @@ background_mode = 2
 background_energy_multiplier = 1.2
 sky = SubResource("Sky_pj1mq")
 ambient_light_source = 3
-ambient_light_color = Color(0.321569, 0.721569, 0.298039, 1)
+ambient_light_color = Color(0.8, 0.992157, 0.780392, 1)
 reflected_light_source = 2
 tonemap_mode = 3
 tonemap_exposure = 1.1
@@ -33,18 +35,22 @@ sdfgi_use_occlusion = true
 sdfgi_y_scale = 0
 sdfgi_energy = 1.5
 glow_enabled = true
-glow_intensity = 5.77
+glow_levels/1 = 1.0
+glow_normalized = true
+glow_bloom = 0.25
+glow_blend_mode = 0
 fog_light_color = Color(0.321569, 0.72549, 0.301961, 1)
 fog_aerial_perspective = 0.9
 fog_sky_affect = 0.221
 volumetric_fog_density = 0.01
-volumetric_fog_albedo = Color(0.482353, 0.207843, 0.172549, 1)
-volumetric_fog_emission = Color(0.32549, 0.72549, 0.301961, 1)
+volumetric_fog_albedo = Color(0.117647, 0.345098, 0.819608, 1)
+volumetric_fog_emission_energy = 0.5
 volumetric_fog_length = 100.0
-volumetric_fog_sky_affect = 0.01
+volumetric_fog_sky_affect = 0.06
+volumetric_fog_temporal_reprojection_enabled = false
 adjustment_enabled = true
 adjustment_brightness = 1.2
-adjustment_contrast = 1.2
+adjustment_contrast = 1.1
 
 [node name="Main" type="Node"]
 
@@ -53,4 +59,9 @@ adjustment_contrast = 1.2
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hhami")
 
-[node name="Castle" parent="." instance=ExtResource("1_5fceg")]
+[node name="Level" parent="." instance=ExtResource("1_as7fe")]
+
+[editable path="Level"]
+[editable path="Level/Castle"]
+[editable path="Level/Ocean"]
+[editable path="Level/Fog"]

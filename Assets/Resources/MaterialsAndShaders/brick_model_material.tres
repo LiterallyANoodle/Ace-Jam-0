@@ -5,7 +5,8 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_s1f24")
-shader_parameter/BaseColor = Color(0.099, 0.06, 0.24, 1)
+shader_parameter/BaseColor = Color(0.486275, 0.278431, 0.678431, 1)
 shader_parameter/FresnelColor = Color(0.0414, 0.23, 0.075977, 1)
 shader_parameter/FresnelPower = 3.0
 shader_parameter/Intensity = 1.45
+shader_parameter/MetallicIntensity = 0.85

@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dplcoqffwibkd"]
+
+[ext_resource type="Shader" uid="uid://behlvqskhfu84" path="res://Assets/Resources/MaterialsAndShaders/fog_shader.tres" id="1_5h3bw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7smx"]
+render_priority = 0
+shader = ExtResource("1_5h3bw")
+shader_parameter/TimeDilationSmall = Vector2(0.01, 0.01)
+shader_parameter/WaveGainSmall = 5.0
+shader_parameter/TimeDilationMedium = Vector2(0.008, 0.01)
+shader_parameter/WaveGainMedium = 8.0
+shader_parameter/TimeDilationLarge = Vector2(0.005, 0.005)
+shader_parameter/WaveGainLarge = 10.0
+shader_parameter/OceanHeight = -6.75
+shader_parameter/HighColor = Color(0.482353, 0.831373, 0.54902, 1)
+shader_parameter/TimeDilationSmall2 = Vector2(0.01, 0.01)
+shader_parameter/TimeDilationMedium2 = Vector2(0.008, 0.01)
+shader_parameter/TimeDilationLarge2 = Vector2(0.005, 0.005)
+shader_parameter/ColorPower = 1.0
+shader_parameter/ColorGain = 1.0
+shader_parameter/ColorBias = -0.5
+shader_parameter/LowColor = Color(0.286275, 0.345098, 0, 1)
+shader_parameter/AlphaBias = -0.4
+shader_parameter/Emission = 0.01
+
+[sub_resource type="QuadMesh" id="QuadMesh_ame1b"]
+material = SubResource("ShaderMaterial_q7smx")
+size = Vector2(512, 512)
+subdivide_width = 256
+subdivide_depth = 256
+orientation = 1
+
+[node name="Ocean" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("QuadMesh_ame1b")

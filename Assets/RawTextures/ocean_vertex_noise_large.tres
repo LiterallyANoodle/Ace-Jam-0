@@ -1,0 +1,8 @@
+[gd_resource type="FastNoiseLite" format=3 uid="uid://bijbcwr8yxgry"]
+
+[resource]
+noise_type = 2
+seed = 95
+frequency = 0.0119
+fractal_octaves = 3
+fractal_gain = 0.4

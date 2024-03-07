@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://be4h3vepg120q"]
+
+[ext_resource type="PackedScene" uid="uid://cf8kbor7d1374" path="res://Assets/RawModels/island.blend" id="1_bc3gh"]
+[ext_resource type="Material" uid="uid://b0cyr5t4i8unc" path="res://Assets/Resources/MaterialsAndShaders/island_model_material.tres" id="2_jncet"]
+
+[node name="Island" type="Node3D"]
+
+[node name="island" parent="." instance=ExtResource("1_bc3gh")]
+
+[node name="Island" parent="island" index="0"]
+surface_material_override/0 = ExtResource("2_jncet")
+
+[editable path="island"]

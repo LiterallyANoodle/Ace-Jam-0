@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://xovwkhhu03c3"]
+
+[ext_resource type="Shader" uid="uid://lgj2nvhb5lgx" path="res://Assets/Resources/MaterialsAndShaders/ocean_shader.tres" id="1_a0d4q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slplm"]
+render_priority = 0
+shader = ExtResource("1_a0d4q")
+shader_parameter/TimeDilationSmall = Vector2(0.025, 0.03)
+shader_parameter/WaveGainSmall = 4.0
+shader_parameter/TimeDilationMedium = Vector2(0.02, 0.015)
+shader_parameter/WaveGainMedium = 5.0
+shader_parameter/TimeDilationLarge = Vector2(0.001, 0.001)
+shader_parameter/WaveGainLarge = 8.0
+shader_parameter/OceanHeight = -7.0
+shader_parameter/HighColor = Color(0.164706, 0.462745, 0.317647, 1)
+shader_parameter/TimeDilationSmall2 = Vector2(0.025, 0.03)
+shader_parameter/TimeDilationMedium2 = Vector2(0.02, 0.015)
+shader_parameter/TimeDilationLarge2 = Vector2(0.01, 0.01)
+shader_parameter/ColorPower = 2.0
+shader_parameter/ColorGain = 1.0
+shader_parameter/ColorBias = 0.0
+shader_parameter/LowColor = Color(0.207843, 0, 0.00392157, 1)
+shader_parameter/AlphaBias = 0.0
+shader_parameter/Emission = 0.001
+
+[sub_resource type="QuadMesh" id="QuadMesh_ame1b"]
+material = SubResource("ShaderMaterial_slplm")
+size = Vector2(512, 512)
+subdivide_width = 256
+subdivide_depth = 256
+orientation = 1
+
+[node name="Ocean" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("QuadMesh_ame1b")

@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://chllav8a5o7lv"]
+
+[ext_resource type="PackedScene" uid="uid://b7og6evqqag2o" path="res://Scenes/castle.tscn" id="1_0knun"]
+[ext_resource type="PackedScene" uid="uid://be4h3vepg120q" path="res://Scenes/island.tscn" id="2_g4frb"]
+[ext_resource type="PackedScene" uid="uid://xovwkhhu03c3" path="res://Scenes/ocean.tscn" id="3_carqe"]
+[ext_resource type="PackedScene" uid="uid://dplcoqffwibkd" path="res://Scenes/fog.tscn" id="4_olms6"]
+
+[node name="Level" type="Node3D"]
+
+[node name="Castle" parent="." instance=ExtResource("1_0knun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+
+[node name="Island" parent="." instance=ExtResource("2_g4frb")]
+
+[node name="Ocean" parent="." instance=ExtResource("3_carqe")]
+
+[node name="FrontLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.843063, -0.392654, -0.367516, 0, -0.68335, 0.730091, -0.537815, -0.615513, -0.576107, 0, 0, 0)
+light_color = Color(0.698039, 0.921569, 0.988235, 1)
+light_energy = 1.5
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 3.43
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_opacity = 0.7
+shadow_blur = 5.04
+sky_mode = 1
+
+[node name="NegativeLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.98771, 0.114111, 0.106805, 2.35872e-09, -0.68335, 0.730091, 0.156296, -0.721118, -0.674952, 0, 0, 0)
+light_color = Color(0.839216, 0.694118, 0.972549, 1)
+light_energy = 0.4
+light_angular_distance = 3.43
+light_negative = true
+shadow_opacity = 0.0
+sky_mode = 1
+
+[node name="BackLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.709878, -0.515906, 0.479494, 0, 0.680785, 0.732483, -0.704325, -0.519974, 0.483274, 0, 0, 0)
+light_color = Color(0.988235, 0.541176, 0.482353, 1)
+light_energy = 0.8
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 3.43
+shadow_enabled = true
+shadow_blur = 1.303
+sky_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.653421, -0.317523, 0.687183, 0, 0.907777, 0.419452, -0.756995, 0.274079, -0.59316, 25, 25, -25)
+rotation_edit_mode = 1
+current = true
+
+[node name="Fog" parent="." instance=ExtResource("4_olms6")]
+
+[editable path="Castle"]
+[editable path="Ocean"]
+[editable path="Fog"]
