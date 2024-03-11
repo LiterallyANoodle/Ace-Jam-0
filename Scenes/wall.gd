@@ -1,7 +1,7 @@
 class_name Wall
 extends Node3D
 
-@onready var grid_map : GridMap = $GridMap
+@onready var grid_map : GridMap = $Bricks
 @onready var bricks_positions : Array[Vector3i] = grid_map.get_used_cells()
 
 # Called when the node enters the scene tree for the first time.

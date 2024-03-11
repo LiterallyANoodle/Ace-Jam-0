@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://q1bd3425b4ki"]
+[gd_scene load_steps=6 format=3 uid="uid://q1bd3425b4ki"]
 
 [ext_resource type="PackedScene" uid="uid://chllav8a5o7lv" path="res://Scenes/level.tscn" id="1_as7fe"]
+[ext_resource type="Script" path="res://Scenes/player_controller.gd" id="1_k13hf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2kelh"]
 sky_top_color = Color(0.317647, 0.717647, 0.298039, 1)
@@ -56,10 +57,22 @@ adjustment_contrast = 1.1
 
 [node name="Game Manager" type="Node" parent="."]
 
+[node name="PlayerController" type="Node" parent="Game Manager"]
+script = ExtResource("1_k13hf")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hhami")
 
 [node name="Level" parent="." instance=ExtResource("1_as7fe")]
+
+[node name="Camera3D" parent="Level/Castle/CameraPath/CameraPathFollower" index="0"]
+current = true
+
+[node name="Camera3D" parent="Level" index="6"]
+current = false
+
+[connection signal="left_just_pressed" from="Game Manager/PlayerController" to="Level/Castle/CameraPath/CameraPathFollower" method="_left_just_pressed"]
+[connection signal="right_just_pressed" from="Game Manager/PlayerController" to="Level/Castle/CameraPath/CameraPathFollower" method="_right_just_pressed"]
 
 [editable path="Level"]
 [editable path="Level/Castle"]

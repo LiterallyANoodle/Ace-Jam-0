@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7og6evqqag2o"]
+[gd_scene load_steps=4 format=3 uid="uid://b7og6evqqag2o"]
 
 [ext_resource type="PackedScene" uid="uid://8gc3hu6rn0qa" path="res://Scenes/wall.tscn" id="1_ukpev"]
+[ext_resource type="Script" path="res://Scenes/CameraPathFollower.gd" id="2_2wroc"]
+
+[sub_resource type="Curve3D" id="Curve3D_xo4j0"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 10, 12, 4, 0, 10, 0, 0, -10, 0, 0, 0, 4, 12, 0, 0, 10, 0, 0, -10, -12, 4, 0, -10, 0, 0, 10, 0, 0, 0, 4, -12, 0, 0, -10, 0, 0, 0, 12, 4, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
 
 [node name="Castle" type="Node3D"]
 
@@ -15,3 +23,13 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.94,
 
 [node name="WestWall" parent="." instance=ExtResource("1_ukpev")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.94, 0, -5.565)
+
+[node name="CameraPath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_xo4j0")
+
+[node name="CameraPathFollower" type="PathFollow3D" parent="CameraPath"]
+transform = Transform3D(-0.999992, 0, -8.74221e-08, 0, 1, 0, 8.74221e-08, 0, -0.999992, 12, 4, 0)
+script = ExtResource("2_2wroc")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPath/CameraPathFollower"]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 0)
