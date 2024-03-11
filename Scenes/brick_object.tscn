@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1gaotbi5xc2f"]
+
+[ext_resource type="PackedScene" uid="uid://7285y46synhd" path="res://Assets/RawModels/brick0.glb" id="1_k7ky0"]
+[ext_resource type="Material" uid="uid://cgfu2ou6qqh6r" path="res://Assets/Resources/MaterialsAndShaders/brick_model_material.tres" id="2_slrqc"]
+[ext_resource type="PackedScene" uid="uid://d2orsr43dctu0" path="res://Assets/RawModels/brick1.glb" id="3_qo32w"]
+[ext_resource type="PackedScene" uid="uid://cq55lhpxbf71r" path="res://Assets/RawModels/brick2.glb" id="4_jm0hw"]
+[ext_resource type="PackedScene" uid="uid://dnd0h04hyjtt4" path="res://Assets/RawModels/brick3.glb" id="5_ttffc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3f2ld"]
+size = Vector3(1.73, 2, 3.76)
+
+[node name="BrickTile" type="Node3D"]
+
+[node name="brick0" parent="." instance=ExtResource("1_k7ky0")]
+
+[node name="Area3D" type="Area3D" parent="brick0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="brick0/Area3D"]
+shape = SubResource("BoxShape3D_3f2ld")
+
+[node name="brick1" parent="." instance=ExtResource("3_qo32w")]
+visible = false
+
+[node name="BrickCrack1" parent="brick1" index="0"]
+surface_material_override/0 = ExtResource("2_slrqc")
+
+[node name="Area3D" type="Area3D" parent="brick1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="brick1/Area3D"]
+shape = SubResource("BoxShape3D_3f2ld")
+
+[node name="brick2" parent="." instance=ExtResource("4_jm0hw")]
+visible = false
+
+[node name="BrickCrack2" parent="brick2" index="0"]
+surface_material_override/0 = ExtResource("2_slrqc")
+
+[node name="Area3D" type="Area3D" parent="brick2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="brick2/Area3D"]
+shape = SubResource("BoxShape3D_3f2ld")
+
+[node name="brick3" parent="." instance=ExtResource("5_ttffc")]
+visible = false
+
+[node name="BrickCrack3" parent="brick3" index="0"]
+surface_material_override/0 = ExtResource("2_slrqc")
+
+[node name="Area3D" type="Area3D" parent="brick3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="brick3/Area3D"]
+shape = SubResource("BoxShape3D_3f2ld")
+
+[editable path="brick0"]
+[editable path="brick1"]
+[editable path="brick2"]
+[editable path="brick3"]
