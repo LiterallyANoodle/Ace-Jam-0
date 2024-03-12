@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://5bdyhvykoagm"]
+
+[ext_resource type="Shader" uid="uid://d03o5xkytp735" path="res://Assets/Resources/MaterialsAndShaders/highlighted_material_shader.tres" id="1_5flly"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_5flly")
+shader_parameter/ColorTop = Color(0.767955, 0.76485, 0, 1)
+shader_parameter/TimeDilation = 0.0
+shader_parameter/HalfMaxAlpha = 0.1
