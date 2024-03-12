@@ -12,6 +12,7 @@ const Wall_Directions: Dictionary = {
 @export var max_height: int = 4
 
 @onready var brick_camera_front = $BrickCameraFront
+@onready var castle_camera = get_node("../CameraPath/CameraPathFollower/Camera3D")
 @onready var signal_bus = get_node("/root/SignalBus")
 @onready var camera_transition = get_node("/root/CameraTransition")
 @onready var brick_scene : PackedScene = load("res://Scenes/brick.tscn")
@@ -33,4 +34,5 @@ func _ready():
 func _on_brick_clicked(brick, wall):
 	var wall_vector = Wall_Directions[wall.get_name()]
 	var front_cam_position = brick.position - wall_vector
-	brick_camera_front.rotation
+	brick_camera_front.position = front_cam_position
+	CameraTransition.transition_camera3d(castle_camera, brick_camera_front)

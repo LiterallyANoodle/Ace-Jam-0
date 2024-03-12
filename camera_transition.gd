@@ -3,7 +3,7 @@ extends Node
 @onready var in_transition: bool = false
 @onready var camera3d: Camera3D = $Camera3D
 
-func transition_camera3D(from: Camera3D, to: Camera3D, duration: float = 0.25) -> void:
+func transition_camera3d(from: Camera3D, to: Camera3D, duration: float = 0.25) -> void:
 	if in_transition: return
 	
 	# copy the first camera 
