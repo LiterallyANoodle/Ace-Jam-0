@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://delniw4uhafon"]
+
+[node name="Tools" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Chisel" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="BrickPile" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Hammer" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
