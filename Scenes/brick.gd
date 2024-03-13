@@ -45,8 +45,9 @@ func update_mesh() -> void:
 			brick_meshes[i].visible = false
 
 func decrement_health() -> void:
-	brick_health -= 1
-	update_mesh()
+	if brick_health > 0:
+		brick_health -= 1
+		update_mesh()
 	
 func set_health(value: int) -> void:
 	brick_health = clampi(value, 0, MAX_BRICK_HEALTH)

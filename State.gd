@@ -4,6 +4,9 @@ enum Mode { MAIN_MENU, WALL_VIEW, BRICK_VIEW }
 
 @onready var current_state = Mode.WALL_VIEW
 
+func _ready():
+	randomize()
+
 func get_state() -> Mode:
 	return current_state
 	

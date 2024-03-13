@@ -47,3 +47,6 @@ func _on_back_pressed():
 	if state.get_state() == state.Mode.BRICK_VIEW:
 		print("go back!")
 		state.set_state(state.Mode.WALL_VIEW)
+		
+func get_brick(index: int) -> Brick:
+	return bricks[index]
