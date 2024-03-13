@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SignalBus="*res://signal_bus.gd"
 CameraTransition="*res://camera_transition.tscn"
 State="*res://state.tscn"
+ToolsInterface="*res://Scenes/tools.tscn"
 
 [dotnet]
 

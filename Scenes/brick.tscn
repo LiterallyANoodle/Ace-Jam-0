@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://r675s8xmrr5c"]
+[gd_scene load_steps=20 format=3 uid="uid://r675s8xmrr5c"]
 
 [ext_resource type="PackedScene" uid="uid://7285y46synhd" path="res://Assets/RawModels/brick0.glb" id="1_5pajc"]
 [ext_resource type="Script" path="res://Scenes/brick.gd" id="1_83wd0"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://d2orsr43dctu0" path="res://Assets/RawModels/brick1.glb" id="4_xhhi0"]
 [ext_resource type="PackedScene" uid="uid://cq55lhpxbf71r" path="res://Assets/RawModels/brick2.glb" id="5_tly7s"]
 [ext_resource type="PackedScene" uid="uid://dnd0h04hyjtt4" path="res://Assets/RawModels/brick3.glb" id="6_oyur8"]
+[ext_resource type="Texture2D" uid="uid://cjncd4l63vuvq" path="res://Assets/RawTextures/brick_break_particle_1.png" id="8_qqxak"]
+[ext_resource type="Texture2D" uid="uid://b6f61tqf1xqvp" path="res://Assets/RawTextures/brick_break_particle_2.png" id="9_urrmi"]
+[ext_resource type="Texture2D" uid="uid://d12g2kebdx51t" path="res://Assets/RawTextures/brick_break_particle_3.png" id="10_5lv1s"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nwt57"]
 material = ExtResource("4_u2bed")
@@ -14,6 +17,41 @@ size = Vector3(1.74, 2.01, 3.77)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4fwqk"]
 size = Vector3(1.73, 2, 3.76)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_thm1i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut0xb"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("8_qqxak")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_taqdo"]
+material = SubResource("StandardMaterial3D_ut0xb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_el3if"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("9_urrmi")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_07o1c"]
+material = SubResource("StandardMaterial3D_el3if")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4t0gy"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("10_5lv1s")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_umin5"]
+material = SubResource("StandardMaterial3D_4t0gy")
 
 [node name="Brick" type="Node3D"]
 script = ExtResource("1_83wd0")
@@ -24,16 +62,19 @@ script = ExtResource("1_83wd0")
 surface_material_override/0 = ExtResource("3_elh1a")
 
 [node name="brick1" parent="." instance=ExtResource("4_xhhi0")]
+visible = false
 
 [node name="BrickCrack1" parent="brick1" index="0"]
 surface_material_override/0 = ExtResource("3_elh1a")
 
 [node name="brick2" parent="." instance=ExtResource("5_tly7s")]
+visible = false
 
 [node name="BrickCrack2" parent="brick2" index="0"]
 surface_material_override/0 = ExtResource("3_elh1a")
 
 [node name="brick3" parent="." instance=ExtResource("6_oyur8")]
+visible = false
 
 [node name="BrickCrack3" parent="brick3" index="0"]
 surface_material_override/0 = ExtResource("3_elh1a")
@@ -46,9 +87,18 @@ mesh = SubResource("BoxMesh_nwt57")
 visible = false
 
 [node name="ClickBox" type="Area3D" parent="."]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ClickBox"]
 shape = SubResource("BoxShape3D_4fwqk")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_thm1i")
+draw_passes = 3
+draw_pass_1 = SubResource("QuadMesh_taqdo")
+draw_pass_2 = SubResource("QuadMesh_07o1c")
+draw_pass_3 = SubResource("QuadMesh_umin5")
 
 [connection signal="input_event" from="ClickBox" to="." method="_on_click_box_input_event"]
 [connection signal="mouse_entered" from="ClickBox" to="." method="_on_click_box_mouse_entered"]

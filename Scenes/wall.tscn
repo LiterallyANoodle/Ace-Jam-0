@@ -7,3 +7,4 @@ script = ExtResource("1_4nv2h")
 
 [node name="BrickCameraFront" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+fov = 20.0

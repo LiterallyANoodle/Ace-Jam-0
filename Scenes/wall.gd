@@ -15,6 +15,7 @@ const Wall_Directions: Dictionary = {
 @onready var castle_camera = get_node("../CameraPath/CameraPathFollower/Camera3D")
 @onready var signal_bus = get_node("/root/SignalBus")
 @onready var state = get_node("/root/State")
+@onready var tools_interface = get_node("/root/ToolsInterface")
 @onready var camera_transition = get_node("/root/CameraTransition")
 @onready var brick_scene : PackedScene = load("res://Scenes/brick.tscn")
 
@@ -38,7 +39,8 @@ func _on_brick_clicked(brick, wall):
 		if wall == self:
 			print("brick clicked!")
 			state.set_state(state.Mode.BRICK_VIEW)
-			var front_cam_position = brick.position - Vector3(-1, 0, 0) * 3
+			tools_interface.visible = true
+			var front_cam_position = brick.position - Vector3(-1, 0, 0) * 11
 			print(front_cam_position)
 			brick_camera_front.position = front_cam_position
 			CameraTransition.transition_camera3d(castle_camera, brick_camera_front, 0.1)
@@ -47,6 +49,8 @@ func _on_back_pressed():
 	if state.get_state() == state.Mode.BRICK_VIEW:
 		print("go back!")
 		state.set_state(state.Mode.WALL_VIEW)
+		tools_interface.visible = false
+		state.set_tool_state(state.Tool.NONE)
 		
 func get_brick(index: int) -> Brick:
 	return bricks[index]
