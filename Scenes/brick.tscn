@@ -1,16 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://r675s8xmrr5c"]
+[gd_scene load_steps=10 format=3 uid="uid://r675s8xmrr5c"]
 
 [ext_resource type="PackedScene" uid="uid://7285y46synhd" path="res://Assets/RawModels/brick0.glb" id="1_5pajc"]
 [ext_resource type="Script" path="res://Scenes/brick.gd" id="1_83wd0"]
 [ext_resource type="Material" uid="uid://cgfu2ou6qqh6r" path="res://Assets/Resources/MaterialsAndShaders/brick_model_material.tres" id="3_elh1a"]
 [ext_resource type="Material" uid="uid://5bdyhvykoagm" path="res://Assets/Resources/MaterialsAndShaders/highlighted_material.tres" id="4_u2bed"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_4fwqk"]
-size = Vector3(1.73, 2, 3.76)
+[ext_resource type="PackedScene" uid="uid://d2orsr43dctu0" path="res://Assets/RawModels/brick1.glb" id="4_xhhi0"]
+[ext_resource type="PackedScene" uid="uid://cq55lhpxbf71r" path="res://Assets/RawModels/brick2.glb" id="5_tly7s"]
+[ext_resource type="PackedScene" uid="uid://dnd0h04hyjtt4" path="res://Assets/RawModels/brick3.glb" id="6_oyur8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nwt57"]
 material = ExtResource("4_u2bed")
 size = Vector3(1.74, 2.01, 3.77)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4fwqk"]
+size = Vector3(1.73, 2, 3.76)
 
 [node name="Brick" type="Node3D"]
 script = ExtResource("1_83wd0")
@@ -20,17 +23,38 @@ script = ExtResource("1_83wd0")
 [node name="BrickCrack0" parent="brick0" index="0"]
 surface_material_override/0 = ExtResource("3_elh1a")
 
-[node name="ClickBox" type="Area3D" parent="."]
+[node name="brick1" parent="." instance=ExtResource("4_xhhi0")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickBox"]
-shape = SubResource("BoxShape3D_4fwqk")
+[node name="BrickCrack1" parent="brick1" index="0"]
+surface_material_override/0 = ExtResource("3_elh1a")
+
+[node name="brick2" parent="." instance=ExtResource("5_tly7s")]
+
+[node name="BrickCrack2" parent="brick2" index="0"]
+surface_material_override/0 = ExtResource("3_elh1a")
+
+[node name="brick3" parent="." instance=ExtResource("6_oyur8")]
+
+[node name="BrickCrack3" parent="brick3" index="0"]
+surface_material_override/0 = ExtResource("3_elh1a")
 
 [node name="HighlightMesh" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("BoxMesh_nwt57")
+
+[node name="Blank" type="MeshInstance3D" parent="."]
+visible = false
+
+[node name="ClickBox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickBox"]
+shape = SubResource("BoxShape3D_4fwqk")
 
 [connection signal="input_event" from="ClickBox" to="." method="_on_click_box_input_event"]
 [connection signal="mouse_entered" from="ClickBox" to="." method="_on_click_box_mouse_entered"]
 [connection signal="mouse_exited" from="ClickBox" to="." method="_on_click_box_mouse_exited"]
 
 [editable path="brick0"]
+[editable path="brick1"]
+[editable path="brick2"]
+[editable path="brick3"]

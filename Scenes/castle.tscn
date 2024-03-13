@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7og6evqqag2o"]
+[gd_scene load_steps=5 format=3 uid="uid://b7og6evqqag2o"]
 
+[ext_resource type="Script" path="res://Scenes/castle.gd" id="1_0ndfe"]
 [ext_resource type="PackedScene" uid="uid://8gc3hu6rn0qa" path="res://Scenes/wall.tscn" id="1_ukpev"]
 [ext_resource type="Script" path="res://Scenes/CameraPathFollower.gd" id="2_2wroc"]
 
@@ -11,6 +12,7 @@ _data = {
 point_count = 5
 
 [node name="Castle" type="Node3D"]
+script = ExtResource("1_0ndfe")
 
 [node name="NorthWall" parent="." instance=ExtResource("1_ukpev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.565, 0, 0.94)
@@ -28,8 +30,12 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.94, 0,
 curve = SubResource("Curve3D_xo4j0")
 
 [node name="CameraPathFollower" type="PathFollow3D" parent="CameraPath"]
-transform = Transform3D(-0.999992, 0, -8.74221e-08, 0, 1, 0, 8.74221e-08, 0, -0.999992, 12, 4, 0)
+transform = Transform3D(-0.999992, 0, -8.7422e-08, 0, 1, 0, 8.7422e-08, 0, -0.999992, 12, 4, 0)
 script = ExtResource("2_2wroc")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPath/CameraPathFollower"]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 0)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

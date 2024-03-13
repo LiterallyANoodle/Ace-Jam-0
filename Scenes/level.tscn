@@ -10,6 +10,9 @@
 [node name="Castle" parent="." instance=ExtResource("1_0knun")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
 
+[node name="CameraPathFollower" parent="Castle/CameraPath" index="0"]
+transform = Transform3D(-0.999992, 0, -8.74221e-08, 0, 1, 0, 8.74221e-08, 0, -0.999992, 12, 4, 0)
+
 [node name="Island" parent="." instance=ExtResource("2_g4frb")]
 
 [node name="Ocean" parent="." instance=ExtResource("3_carqe")]

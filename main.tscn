@@ -65,6 +65,9 @@ environment = SubResource("Environment_hhami")
 
 [node name="Level" parent="." instance=ExtResource("1_as7fe")]
 
+[node name="CameraPathFollower" parent="Level/Castle/CameraPath" index="0"]
+transform = Transform3D(-0.999992, 0, -8.74221e-08, 0, 1, 0, 8.74221e-08, 0, -0.999992, 12, 4, 0)
+
 [node name="Camera3D" parent="Level/Castle/CameraPath/CameraPathFollower" index="0"]
 current = true
 
