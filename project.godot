@@ -20,7 +20,14 @@ config/icon="res://icon.svg"
 SignalBus="*res://signal_bus.gd"
 CameraTransition="*res://camera_transition.tscn"
 State="*res://state.tscn"
-ToolsInterface="*res://Scenes/tools.tscn"
+ToolsInterface="*res://Scenes/tools_interface.tscn"
+Audio="*res://audio.tscn"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/borderless=true
 
 [dotnet]
 
@@ -29,6 +36,10 @@ project/assembly_name="Crumbling Castle"
 [filesystem]
 
 import/fbx/enabled=false
+
+[gui]
+
+theme/custom_font="res://Assets/Resources/Ciircuit-Regular.ttf"
 
 [input]
 
@@ -71,6 +82,11 @@ three={
 four={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":52,"key_label":0,"unicode":52,"echo":false,"script":null)
+]
+}
+Esc={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 

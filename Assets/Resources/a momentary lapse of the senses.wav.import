@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://eu1th63s67ip"
+path="res://.godot/imported/a momentary lapse of the senses.wav-4192656a0f349e95a883fbf523c43a8d.sample"
+
+[deps]
+
+source_file="res://Assets/Resources/a momentary lapse of the senses.wav"
+dest_files=["res://.godot/imported/a momentary lapse of the senses.wav-4192656a0f349e95a883fbf523c43a8d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

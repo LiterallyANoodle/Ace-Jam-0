@@ -25,3 +25,9 @@ func transition_camera3d(from: Camera3D, to: Camera3D, duration: float = 0.25) -
 	# swap to new camera 
 	to.current = true
 	in_transition = false
+
+func copy_camera3d(from: Camera3D, to: Camera3D) -> void:
+	# copy the first camera 
+	to.fov = from.fov
+	to.cull_mask = from.cull_mask
+	to.global_transform = from.global_transform

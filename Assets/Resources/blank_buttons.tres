@@ -1,0 +1,29 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cd6crhnof7eer"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atllk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lc8hc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wsmhu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tpns"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrbvs"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[resource]
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0)
+Button/colors/icon_focus_color = Color(1, 1, 1, 0)
+Button/colors/icon_hover_color = Color(1, 1, 1, 0)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 0)
+Button/colors/icon_normal_color = Color(0.823529, 0.823529, 0.823529, 0)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 0)
+Button/styles/disabled = SubResource("StyleBoxFlat_atllk")
+Button/styles/focus = SubResource("StyleBoxFlat_lc8hc")
+Button/styles/hover = SubResource("StyleBoxFlat_wsmhu")
+Button/styles/normal = SubResource("StyleBoxFlat_8tpns")
+Button/styles/pressed = SubResource("StyleBoxFlat_mrbvs")

@@ -71,9 +71,6 @@ transform = Transform3D(-0.999992, 0, -8.74221e-08, 0, 1, 0, 8.74221e-08, 0, -0.
 [node name="Camera3D" parent="Level/Castle/CameraPath/CameraPathFollower" index="0"]
 current = true
 
-[node name="Camera3D" parent="Level" index="6"]
-current = false
-
 [connection signal="left_just_pressed" from="Game Manager/PlayerController" to="Level/Castle/CameraPath/CameraPathFollower" method="_left_just_pressed"]
 [connection signal="right_just_pressed" from="Game Manager/PlayerController" to="Level/Castle/CameraPath/CameraPathFollower" method="_right_just_pressed"]
 

@@ -10,6 +10,7 @@ const Wall_Directions: Dictionary = {
 
 @export var max_width: int = 3
 @export var max_height: int = 4
+@export var camera_distance: float = 15
 
 @onready var brick_camera_front = $BrickCameraFront
 @onready var castle_camera = get_node("../CameraPath/CameraPathFollower/Camera3D")
@@ -36,21 +37,26 @@ func _ready():
 	
 func _on_brick_clicked(brick, wall):
 	if state.get_state() == state.Mode.WALL_VIEW:
-		if wall == self:
-			print("brick clicked!")
-			state.set_state(state.Mode.BRICK_VIEW)
-			tools_interface.visible = true
-			var front_cam_position = brick.position - Vector3(-1, 0, 0) * 11
-			print(front_cam_position)
-			brick_camera_front.position = front_cam_position
-			CameraTransition.transition_camera3d(castle_camera, brick_camera_front, 0.1)
+		brick_selected(brick, wall)
 		
 func _on_back_pressed():
 	if state.get_state() == state.Mode.BRICK_VIEW:
 		print("go back!")
 		state.set_state(state.Mode.WALL_VIEW)
+		state.set_brick_selection(null)
 		tools_interface.visible = false
-		state.set_tool_state(state.Tool.NONE)
 		
 func get_brick(index: int) -> Brick:
 	return bricks[index]
+	
+func brick_selected(brick: Brick, wall: Wall) -> void:
+	if wall == self:
+		print("brick clicked!")
+		state.set_state(state.Mode.BRICK_VIEW)
+		state.set_brick_selection(brick)
+		tools_interface.visible = true
+		var front_cam_position = brick.position - Vector3(-1, 0, 0) * camera_distance
+		print(front_cam_position)
+		brick_camera_front.position = front_cam_position
+		CameraTransition.transition_camera3d(castle_camera, brick_camera_front, 0.1)
+		signal_bus.brick_selected.emit(brick, wall, brick_camera_front)

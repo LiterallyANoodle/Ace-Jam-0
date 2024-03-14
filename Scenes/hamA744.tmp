@@ -1,0 +1,244 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmfttv52una2g"]
+
+[ext_resource type="Script" path="res://Scenes/hammer_interface.gd" id="1_4j0ek"]
+[ext_resource type="Theme" uid="uid://cd6crhnof7eer" path="res://Assets/Resources/blank_buttons.tres" id="2_0ua7h"]
+[ext_resource type="Texture2D" uid="uid://dg8a02q8dk0od" path="res://Assets/RawTextures/dial_level.png" id="2_15qww"]
+[ext_resource type="Texture2D" uid="uid://p575xqxygps3" path="res://Assets/RawTextures/dial_plumb.png" id="3_48pn2"]
+[ext_resource type="Texture2D" uid="uid://yb278jradekl" path="res://Assets/RawTextures/pointer.png" id="3_mc5mc"]
+[ext_resource type="Texture2D" uid="uid://bhqysxaegawbl" path="res://Assets/RawTextures/dial_square.png" id="4_7mnp0"]
+
+[sub_resource type="Curve2D" id="Curve2D_jj1kk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 15, 60, 0, 0, 0, 0, 55, 47, 0, 0, 0, 0, 95, 41, 0, 0, 0, 0, 135, 40, 0, 0, 0, 0, 172, 59)
+}
+point_count = 5
+
+[node name="HammerInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_4j0ek")
+top_cam_height = 10
+side_cam_distance = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="FrontContainer" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="Front" type="SubViewport" parent="HBoxContainer/FrontContainer"]
+handle_input_locally = false
+size = Vector2i(960, 1000)
+render_target_update_mode = 4
+
+[node name="FrontCamera3D" type="Camera3D" parent="HBoxContainer/FrontContainer/Front"]
+fov = 20.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="TopContainer" type="SubViewportContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="Top" type="SubViewport" parent="HBoxContainer/VBoxContainer/TopContainer"]
+handle_input_locally = false
+size = Vector2i(960, 500)
+render_target_update_mode = 4
+
+[node name="TopCamera3D" type="Camera3D" parent="HBoxContainer/VBoxContainer/TopContainer/Top"]
+fov = 20.0
+
+[node name="SideContainer" type="SubViewportContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="SideAxis" type="SubViewport" parent="HBoxContainer/VBoxContainer/SideContainer"]
+handle_input_locally = false
+size = Vector2i(960, 500)
+render_target_update_mode = 4
+
+[node name="SideCamera3D" type="Camera3D" parent="HBoxContainer/VBoxContainer/SideContainer/SideAxis"]
+fov = 10.0
+
+[node name="Level" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1317.0
+offset_top = 507.0
+offset_right = -411.0
+offset_bottom = -365.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_15qww")
+
+[node name="Path2D" type="Path2D" parent="Level"]
+curve = SubResource("Curve2D_jj1kk")
+
+[node name="LevelPathFollow2D" type="PathFollow2D" parent="Level/Path2D"]
+position = Vector2(15, 60)
+rotation = -0.314232
+
+[node name="PointerLevel" type="TextureRect" parent="Level/Path2D/LevelPathFollow2D"]
+texture_filter = 1
+offset_left = -19.575
+offset_top = -22.46
+offset_right = 20.425
+offset_bottom = 17.54
+scale = Vector2(0.66, 0.66)
+pivot_offset = Vector2(20.785, 21.7)
+texture = ExtResource("3_mc5mc")
+
+[node name="Plumb" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1319.0
+offset_top = 28.0
+offset_right = 1511.0
+offset_bottom = 156.0
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("3_48pn2")
+
+[node name="Path2D" type="Path2D" parent="Plumb"]
+curve = SubResource("Curve2D_jj1kk")
+
+[node name="PlumbPathFollow2D" type="PathFollow2D" parent="Plumb/Path2D"]
+position = Vector2(15, 60)
+rotation = -0.314232
+
+[node name="PointerPlumb" type="TextureRect" parent="Plumb/Path2D/PlumbPathFollow2D"]
+texture_filter = 1
+offset_left = -19.575
+offset_top = -22.46
+offset_right = 20.425
+offset_bottom = 17.54
+scale = Vector2(0.66, 0.66)
+pivot_offset = Vector2(20.785, 21.7)
+texture = ExtResource("3_mc5mc")
+
+[node name="Square" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 115.0
+offset_right = 540.0
+offset_bottom = 243.0
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("4_7mnp0")
+
+[node name="Path2D" type="Path2D" parent="Square"]
+curve = SubResource("Curve2D_jj1kk")
+
+[node name="SquarePathFollow2D" type="PathFollow2D" parent="Square/Path2D"]
+position = Vector2(92.7874, 41.3319)
+rotation = -0.14889
+progress = 80.1362
+
+[node name="PointerSquare" type="TextureRect" parent="Square/Path2D/SquarePathFollow2D"]
+texture_filter = 1
+offset_left = -19.575
+offset_top = -22.46
+offset_right = 20.425
+offset_bottom = 17.54
+scale = Vector2(0.66, 0.66)
+pivot_offset = Vector2(20.785, 21.7)
+texture = ExtResource("3_mc5mc")
+
+[node name="LeftPaneLeftButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 94.0
+offset_top = 308.0
+offset_right = -490.0
+offset_bottom = -304.0
+theme = ExtResource("2_0ua7h")
+
+[node name="LeftPaneRightButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 474.0
+offset_top = 308.0
+offset_right = -110.0
+offset_bottom = -304.0
+theme = ExtResource("2_0ua7h")
+
+[node name="TopPaneLeftButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 188.0
+offset_top = 198.0
+offset_right = -184.0
+offset_bottom = -171.0
+theme = ExtResource("2_0ua7h")
+
+[node name="TopPaneRightButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 187.0
+offset_top = 340.0
+offset_right = -179.0
+offset_bottom = -38.0
+theme = ExtResource("2_0ua7h")
+
+[node name="BottomPaneLeftButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 341.0
+offset_top = 171.0
+offset_right = -343.0
+offset_bottom = -176.0
+theme = ExtResource("2_0ua7h")
+
+[node name="BottomPaneRightButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 339.0
+offset_top = 336.0
+offset_right = -342.0
+offset_bottom = -16.0
+theme = ExtResource("2_0ua7h")
+
+[connection signal="pressed" from="LeftPaneLeftButton" to="." method="_send_hammer_buttons" binds= ["LeftPaneLeftButton"]]
+[connection signal="pressed" from="LeftPaneRightButton" to="." method="_send_hammer_buttons" binds= ["LeftPaneRightButton"]]
+[connection signal="pressed" from="TopPaneLeftButton" to="." method="_send_hammer_buttons" binds= ["TopPaneLeftButton"]]
+[connection signal="pressed" from="TopPaneRightButton" to="." method="_send_hammer_buttons" binds= ["TopPaneRightButton"]]
+[connection signal="pressed" from="BottomPaneLeftButton" to="." method="_send_hammer_buttons" binds= ["BottomPaneLeftButton"]]
+[connection signal="pressed" from="BottomPaneRightButton" to="." method="_send_hammer_buttons" binds= ["BottomPaneRightButton"]]

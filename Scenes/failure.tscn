@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciyp5beeeo127"]
+
+[ext_resource type="Texture2D" uid="uid://56i47bxc1hg7" path="res://Assets/RawTextures/fail.png" id="1_3swqi"]
+[ext_resource type="Script" path="res://Scenes/failure.gd" id="1_mngy7"]
+
+[node name="Failure" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_mngy7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3swqi")

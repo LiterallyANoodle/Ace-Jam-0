@@ -1,0 +1,127 @@
+[gd_scene load_steps=19 format=3 uid="uid://r675s8xmrr5c"]
+
+[ext_resource type="PackedScene" uid="uid://7285y46synhd" path="res://Assets/RawModels/brick0.glb" id="1_5pajc"]
+[ext_resource type="Script" path="res://Scenes/brick.gd" id="1_83wd0"]
+[ext_resource type="Material" uid="uid://cgfu2ou6qqh6r" path="res://Assets/Resources/MaterialsAndShaders/brick_model_material.tres" id="3_elh1a"]
+[ext_resource type="Material" uid="uid://5bdyhvykoagm" path="res://Assets/Resources/MaterialsAndShaders/highlighted_material.tres" id="4_u2bed"]
+[ext_resource type="PackedScene" uid="uid://d2orsr43dctu0" path="res://Assets/RawModels/brick1.glb" id="4_xhhi0"]
+[ext_resource type="PackedScene" uid="uid://cq55lhpxbf71r" path="res://Assets/RawModels/brick2.glb" id="5_tly7s"]
+[ext_resource type="PackedScene" uid="uid://dnd0h04hyjtt4" path="res://Assets/RawModels/brick3.glb" id="6_oyur8"]
+[ext_resource type="Script" path="res://Scenes/fake_brick.gd" id="7_ihrsr"]
+[ext_resource type="Texture2D" uid="uid://d2ftaoe67acmj" path="res://Assets/RawTextures/brick_break_particle.png" id="8_gdikw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nwt57"]
+material = ExtResource("4_u2bed")
+size = Vector3(1.74, 2.01, 3.77)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4fwqk"]
+size = Vector3(1.73, 2, 3.76)
+
+[sub_resource type="Curve" id="Curve_7kofd"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.478261, 0.824176), 0.0, 0.0, 0, 0, Vector2(1, -0.67033), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7kvue"]
+curve = SubResource("Curve_7kofd")
+
+[sub_resource type="Curve" id="Curve_reubv"]
+_data = [Vector2(0, 0.934066), 0.0, 0.0, 0, 0, Vector2(1, 0.230769), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jh2po"]
+curve = SubResource("Curve_reubv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_thm1i"]
+lifetime_randomness = 0.3
+direction = Vector3(1, 1, 0)
+spread = 50.0
+flatness = 0.2
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+scale_min = 0.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_jh2po")
+hue_variation_max = 0.1
+hue_variation_curve = SubResource("CurveTexture_7kvue")
+anim_offset_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30bxt"]
+transparency = 1
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("8_gdikw")
+texture_filter = 0
+billboard_mode = 3
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_taqdo"]
+material = SubResource("StandardMaterial3D_30bxt")
+size = Vector2(0.5, 0.5)
+
+[node name="Brick" type="Node3D"]
+script = ExtResource("1_83wd0")
+shake_amount = 0.1
+
+[node name="brick0" parent="." instance=ExtResource("1_5pajc")]
+visible = false
+
+[node name="BrickCrack0" parent="brick0" index="0"]
+surface_material_override/0 = ExtResource("3_elh1a")
+
+[node name="brick1" parent="." instance=ExtResource("4_xhhi0")]
+
+[node name="BrickCrack1" parent="brick1" index="0"]
+surface_material_override/0 = ExtResource("3_elh1a")
+
+[node name="brick2" parent="." instance=ExtResource("5_tly7s")]
+visible = false
+
+[node name="BrickCrack2" parent="brick2" index="0"]
+surface_material_override/0 = ExtResource("3_elh1a")
+
+[node name="brick3" parent="." instance=ExtResource("6_oyur8")]
+visible = false
+
+[node name="BrickCrack3" parent="brick3" index="0"]
+surface_material_override/0 = ExtResource("3_elh1a")
+
+[node name="FakeBrick" parent="." instance=ExtResource("1_5pajc")]
+visible = false
+script = ExtResource("7_ihrsr")
+
+[node name="BrickCrack0" parent="FakeBrick" index="0"]
+surface_material_override/0 = ExtResource("3_elh1a")
+
+[node name="HighlightMesh" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_nwt57")
+
+[node name="Blank" type="MeshInstance3D" parent="."]
+visible = false
+
+[node name="ClickBox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickBox"]
+shape = SubResource("BoxShape3D_4fwqk")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_thm1i")
+draw_pass_1 = SubResource("QuadMesh_taqdo")
+
+[connection signal="input_event" from="ClickBox" to="." method="_on_click_box_input_event"]
+[connection signal="mouse_entered" from="ClickBox" to="." method="_on_click_box_mouse_entered"]
+[connection signal="mouse_exited" from="ClickBox" to="." method="_on_click_box_mouse_exited"]
+
+[editable path="brick0"]
+[editable path="brick1"]
+[editable path="brick2"]
+[editable path="brick3"]
+[editable path="FakeBrick"]

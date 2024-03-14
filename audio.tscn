@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dorqhjadrxr30"]
+
+[ext_resource type="AudioStream" uid="uid://dfmuy5w1fiqbc" path="res://Assets/Resources/1. Crumbling Castle.mp3" id="1_kr7us"]
+[ext_resource type="Script" path="res://audio.gd" id="2_wv4j7"]
+[ext_resource type="AudioStream" uid="uid://cm3j11bqoa2mf" path="res://Assets/Resources/rain.wav" id="3_pfyvm"]
+[ext_resource type="AudioStream" uid="uid://bshdn5fo7oajj" path="res://Assets/Resources/waves.wav" id="4_x6h3t"]
+
+[node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_kr7us")
+volume_db = -6.0
+autoplay = true
+script = ExtResource("2_wv4j7")
+
+[node name="Storm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pfyvm")
+volume_db = -10.0
+autoplay = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+volume_db = -6.0
+
+[node name="Ocean" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_x6h3t")
+volume_db = -10.0
+autoplay = true
