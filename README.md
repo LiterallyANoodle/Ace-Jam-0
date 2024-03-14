@@ -10,8 +10,11 @@ The idea for this game was directly inspired by "Crumbling Castle" by King Gizza
 # Controls
 
 A - flip wall view left
+
 D - flip wall view right
+
 S or Right CLick - Back
+
 Left Click - Select Brick/Tool, Use Tool
 
 # Synopsis
